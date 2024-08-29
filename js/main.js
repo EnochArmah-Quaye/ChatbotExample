@@ -48,7 +48,7 @@ function sendMesaage(messageText){
 function makeRequest(messageText){
     //ajax
     var httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET','',true);
+    httpRequest.open('GET','chatbot.php?message='+messageText,true);
     httpRequest.send();
     httpRequest.onreadystatechange = chatbotSendMessage;
 };
