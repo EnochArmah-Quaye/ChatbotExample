@@ -2,14 +2,19 @@
 var sendBtn = document.getElementById('sendBtn');
 var textbox = document.getElementById('textbox');
 var chatContainer = document.getElementById('chatContainer');
+var httpRequest = new XMLHttpRequest();
 
-setTimeout(function(){
+/*setTimeout(function(){
     chatbotSendMessage("Hi from ChatBot");
-},1000)
+},1000)*/
 
 
 
 function chatbotSendMessage(messageText){
+
+    if(httpRequest.readyState == XMLHttpRequest.DONE && httpRequest.status == 200){
+   
+    var result = JSON.parse(httpRequest.responseText);
 
     var messageElement = document.createElement('div');
     messageElement.classList.add('w-50');
@@ -19,11 +24,15 @@ function chatbotSendMessage(messageText){
     messageElement.style.padding = "5px";
 
     messageElement.innerHTML = "<span> Chatbot: </span>"+
-    "<span style="+"margin-top:10px; padding:10px"+">"+ messageText +"</span>";
+    "<span style="+"margin-top:10px; padding:10px"+">"+ result.response_message +"</span>";
 
     messageElement.animate([{easing:"ease-in",opacity:0.4},{opacity:1}],{duration:1000});   
 
     chatContainer.appendChild(messageElement);
+    }
+    else{
+       //     alert('Error');
+    }
 }
 
 function sendMesaage(messageText){
@@ -47,8 +56,8 @@ function sendMesaage(messageText){
 
 function makeRequest(messageText){
     //ajax
-    var httpRequest = new XMLHttpRequest();
-    httpRequest.open('GET','chatbot.php?message='+messageText,true);
+    
+    httpRequest.open('GET','../chatbot.php?message'+messageText,true);
     httpRequest.send();
     httpRequest.onreadystatechange = chatbotSendMessage;
 };
