@@ -6,7 +6,7 @@ if(isset($_GET['message'])){
 
     $message = $_GET['message'];
 
-    $stmt = $conn->prepare("SELECT response FROM messages WHERE text = '".$message."' LIMIT 1");
+    $stmt = $conn->prepare("SELECT response FROM messages WHERE text = ? LIMIT 1");
     $stmt->bind_param('s',$message);
 
     if($stmt->execute()){
@@ -28,4 +28,11 @@ if(isset($_GET['message'])){
         echo json_encode(['response_message'=>'Sorry the script did not execute well']);
     }
 }
+
+
+
+  
+
+
+
 ?>

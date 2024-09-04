@@ -35,7 +35,7 @@ function chatbotSendMessage(messageText){
     }
 }
 
-function sendMesaage(messageText){
+function sendMessage(messageText){
     
     var messageElement = document.createElement('div');
     messageElement.classList.add('w-50');
@@ -57,7 +57,8 @@ function sendMesaage(messageText){
 function makeRequest(messageText){
     //ajax
     
-    httpRequest.open('GET','../chatbot.php?message'+messageText,true);
+    
+    httpRequest.open('GET','http://localhost/Chatbot/chatbot.php?message='+messageText,true);
     httpRequest.send();
     httpRequest.onreadystatechange = chatbotSendMessage;
 };
@@ -69,7 +70,7 @@ sendBtn.addEventListener('click',function(e){
     }
     else{
     let messageText = textbox.value;
-    sendMesaage(messageText);
+    sendMessage(messageText);
     textbox.value = "";
     }
 });
