@@ -29,10 +29,10 @@ function chatbotSendMessage(messageText){
     messageElement.animate([{easing:"ease-in",opacity:0.4},{opacity:1}],{duration:1000});   
 
     chatContainer.appendChild(messageElement);
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
     }
-    else{
-       //     alert('Error');
-    }
+    
 }
 
 function sendMessage(messageText){
@@ -50,6 +50,8 @@ function sendMessage(messageText){
     messageElement.animate([{easing:"ease-in",opacity:0.4},{opacity:1}],{duration:1000});
 
     chatContainer.appendChild(messageElement);
+
+    chatContainer.scrollTop = chatContainer.scrollHeight;
 
     makeRequest(messageText);
 };
